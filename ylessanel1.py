@@ -1,5 +1,6 @@
 #Hiimo Närep
 #10.10.2022
+#ulessane 1
 import turtle
 
 aken= turtle.Screen()
