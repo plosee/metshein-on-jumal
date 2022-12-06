@@ -1,4 +1,8 @@
-﻿#sama kataloog, mis skriptil
+#sitt ei toota kuna $okond ei toota. situ pihku sitakas pederast
+
+
+
+#sama kataloog, mis skriptil
 $scriptpath = $MyInvocation.MyCommand.Path
 $dir = Split-Path $scriptpath
 
