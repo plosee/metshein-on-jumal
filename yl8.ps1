@@ -26,11 +26,10 @@ function mata{
 
 
 function matat2($nimi){
-    $nimi.tolower()
-    $nimi.replace("ö", "o").replace("ä", "a").replace("õ", "o").replace("ü", "u")
-    (Get-Culture).TextInfo.ToTitleCase($nimi.tolower())
+    $nime = $nimi.tolower()
+    $nima = $nime.replace("ö", "o").replace("ä", "a").replace("õ", "o").replace("ü", "u")
+    (Get-Culture).TextInfo.ToTitleCase($nima.tolower())
     
     }
-    
     
 matat2("õüöä")
