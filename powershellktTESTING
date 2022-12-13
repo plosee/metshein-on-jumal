@@ -1,0 +1,27 @@
+$scriptpath = $MyInvocation.MyCommand.Path
+$dir = Split-Path $scriptpath
+
+$input = read-host "mis on failinimi? (.xml)"
+$xml = [xml](Get-Content $dir\$input)
+
+
+if ($input -ne "\+w\.xml")
+{ 
+    write-host "vale fail"
+    $input = "kuule see sitt on vale failinimi, pane natuke õigem siia"
+}
+
+$rows = $xml.customers.customer
+
+foreach ($row in $rows)
+{
+
+    $row
+    #$muutuja = $row.full_name
+    #New-Item $dir\testing\$muutuja -ItemType Directory
+    #new-item $dir\testing\$muutuja\$muutuja.txt
+    #add-content $dir\testing\$muutuja\$muutuja.txt -value $row
+
+
+}
+   
