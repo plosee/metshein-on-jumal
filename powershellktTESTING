@@ -1,27 +1,38 @@
+#############################################################
+#                       marten laane                        #
+#                         14.12.22                          #
+#                     Powershell KT 04                      #
+#                                                           #
+# Skript küsib kasutajalt, mis XML fail on                  #
+# Skript siis võtab selle XML faili sisu                    #
+# Skript iga reaga võtab nime muutujasse                    #
+# Muutujat kasutatakse tekstifailide ja kataloogide jaoks   #
+#############################################################
+
 $scriptpath = $MyInvocation.MyCommand.Path
 $dir = Split-Path $scriptpath
 
-$input = read-host "mis on failinimi? (.xml)"
-$xml = [xml](Get-Content $dir\$input)
+$1input = read-host "mis on failinimi? (.xml)"
 
 
-if ($input -ne "\+w\.xml")
-{ 
-    write-host "vale fail"
-    $input = "kuule see sitt on vale failinimi, pane natuke õigem siia"
+if ($1input -notmatch "$_.xml")
+{
+    DO
+    {
+        write-host "vale fail"
+        $1input = read-host "kuule see sitt on vale failinimi, pane natuke oigem siia"
+    }
+   Until ($1input -match "$_.xml")
 }
 
+$xml = [xml](Get-Content $dir\$1input)
 $rows = $xml.customers.customer
 
 foreach ($row in $rows)
 {
-
-    $row
-    #$muutuja = $row.full_name
-    #New-Item $dir\testing\$muutuja -ItemType Directory
-    #new-item $dir\testing\$muutuja\$muutuja.txt
-    #add-content $dir\testing\$muutuja\$muutuja.txt -value $row
-
-
+    $muutuja = $row.full_name
+    New-Item $dir\customers\$muutuja -ItemType Directory
+    new-item $dir\customers\$muutuja\$muutuja.txt
+    $row >> $dir\customers\$muutuja\$muutuja.txt
 }
    
